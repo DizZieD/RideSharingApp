@@ -5,10 +5,10 @@ import java.io.Serializable;
 public class Car extends java.lang.Object implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	String plate;
-	String make;
-	String model;
-	String color;
+	public String plate;
+	public String make;
+	public String model;
+	public String color;
 	
 	/**
 	 * Create a car with given features
