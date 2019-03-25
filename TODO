@@ -1,0 +1,6 @@
+rsa.shared
+   -RideMatchInfo
+
+   -PreferredMatch
+
+   -RideSharingAppException
