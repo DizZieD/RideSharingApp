@@ -3,6 +3,8 @@ package rsa.shared;
 import java.io.Serializable;
 
 public class Car extends java.lang.Object implements Serializable{
+	
+
 	private static final long serialVersionUID = 1L;
 	
 	public String plate;
@@ -18,6 +20,7 @@ public class Car extends java.lang.Object implements Serializable{
 	 * @param color - of car
 	 */
 	public Car(String plate, String make, String model, String color) {
+		super();
 		this.plate = plate;
 		this.make = make;
 		this.model = model;
