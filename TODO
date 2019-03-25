@@ -2,3 +2,10 @@ rsa.shared
    -RideMatchInfo
 
    -RideSharingAppException
+
+rsa.quad
+   -LeafTrie
+   -NodeTrie
+   -PointQuadTree
+   
+   -PointOutOfBoundException
