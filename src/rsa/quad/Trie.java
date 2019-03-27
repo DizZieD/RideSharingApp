@@ -13,7 +13,22 @@ public abstract class Trie<T extends HasPoint> extends java.lang.Object{
 	protected double topLeftX;
 	protected double topLeftY;
 	static int capacity;
-	
+
+	/**
+	 * Create a Trie with given (bottomRightX, bottomRightY) and (topLeftX, topLeftY)
+	 * @param bottomRightX - bottom right X coordinate of Trie
+	 * @param bottomRightY - bottom right Y coordinate of Trie
+	 * @param topLeftX - top left X coordinate of Trie
+	 * @param topLeftY - top left Y coordinate of Trie
+	 */
+	protected Trie(double bottomRightX, double bottomRightY, double topLeftX, double topLeftY) {
+		super();
+		this.bottomRightX = bottomRightX;
+		this.bottomRightY = bottomRightY;
+		this.topLeftX = topLeftX;
+		this.topLeftY = topLeftY;
+	}
+
 	/**
 	 * Collect all points in this node and its descendants in given set
 	 * @param points - set of HasPoint for collecting points
