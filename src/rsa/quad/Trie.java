@@ -15,11 +15,11 @@ public abstract class Trie<T extends HasPoint> extends java.lang.Object{
 	static int capacity;
 
 	/**
-	 * Create a Trie with given (bottomRightX, bottomRightY) and (topLeftX, topLeftY)
-	 * @param bottomRightX - bottom right X coordinate of Trie
-	 * @param bottomRightY - bottom right Y coordinate of Trie
-	 * @param topLeftX - top left X coordinate of Trie
-	 * @param topLeftY - top left Y coordinate of Trie
+	 * Create a QuadTree with given (bottomRightX, bottomRightY) and (topLeftX, topLeftY)
+	 * @param bottomRightX - bottom right X coordinate of QuadTree
+	 * @param bottomRightY - bottom right Y coordinate of QuadTree
+	 * @param topLeftX - top left X coordinate of QuadTree
+	 * @param topLeftY - top left Y coordinate of QuadTree
 	 */
 	protected Trie(double bottomRightX, double bottomRightY, double topLeftX, double topLeftY) {
 		super();
