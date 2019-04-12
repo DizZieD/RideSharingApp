@@ -8,8 +8,8 @@ public class User extends java.lang.Object implements java.io.Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	String nick;
-	String password;
 	String name;
+	String password;
 	
 	//Map<K,V> rides;
 	//Map<K,V> stars;
@@ -21,11 +21,11 @@ public class User extends java.lang.Object implements java.io.Serializable{
 	 * @param password - password
 	 * @param name - name of user
 	 */
-	public User(String nick, String password, String name) {
+	public User(String nick, String name, String password) {
 		super();
 		this.nick = nick;
-		this.password = password;
 		this.name = name;
+		this.password = password;
 		this.cars = new HashMap<String, Car>();
 	}
 	
