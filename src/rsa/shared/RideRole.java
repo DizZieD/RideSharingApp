@@ -1,13 +1,9 @@
 package rsa.shared;
 
 public enum RideRole implements java.io.Serializable{ 
-	/**
-	 * This user is driving the car
-	 */
+	/*** This user is driving the car*/
 	DRIVER,
-	/**
-	 * This user is the passenger
-	 */
+	/*** This user is the passenger*/
 	PASSENGER;
 	
 	/**

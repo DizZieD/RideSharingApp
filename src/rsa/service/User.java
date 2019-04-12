@@ -3,6 +3,8 @@ package rsa.service;
 import java.util.HashMap;
 import java.util.Map;
 import rsa.shared.Car;
+import rsa.shared.RideRole;
+import rsa.shared.UserStars;
 
 public class User extends java.lang.Object implements java.io.Serializable{
 	private static final long serialVersionUID = 1L;
@@ -11,9 +13,10 @@ public class User extends java.lang.Object implements java.io.Serializable{
 	String name;
 	String password;
 	
-	//Map<K,V> rides;
-	//Map<K,V> stars;
 	Map<String,Car> cars;
+	Map<RideRole, Integer> stars;
+	private Map<RideRole, Integer> numberOfReviews;
+	//Map<K,V> rides;
 
 	/**
 	 * Create a user with given features
@@ -27,6 +30,8 @@ public class User extends java.lang.Object implements java.io.Serializable{
 		this.name = name;
 		this.password = password;
 		this.cars = new HashMap<String, Car>();
+		this.stars = new HashMap<RideRole, Integer>();
+		this.numberOfReviews = new HashMap<RideRole, Integer>();
 	}
 	
 	/**
@@ -37,7 +42,44 @@ public class User extends java.lang.Object implements java.io.Serializable{
 		cars.put(car.getPlate(), car);
 	}
 	
-	//public void addStars(UserStars moreStars, RideRole role)
+	/**
+	 * Add stars to user according to a role. The registered values are used to compute an average.
+	 * @param moreStars - to add to this user
+	 * @param role - in which stars are added 
+	 */
+	public void addStars(UserStars moreStars, RideRole role) {
+		int stars = 0;
+		
+		switch(moreStars) {
+			case ONE_STAR:
+				stars = 1;
+				break;
+			case TWO_STARS:
+				stars = 2;
+				break;
+			case THREE_STARS:
+				stars = 3;
+				break;
+			case FOUR_STARS:
+				stars = 4;
+				break;
+			case FIVE_STARS:
+				stars = 5;
+				break;	
+		}
+		
+		this.numberOfReviews.put(role, this.numberOfReviews.getOrDefault(role, 0)+1);
+		this.stars.put(role, this.stars.getOrDefault(role, 0)+stars);
+	}
+	
+	/**
+	 * Returns the average number of stars in given role
+	 * @param role - of user
+	 * @return average number of stars 
+	 */
+	public float getAverage(RideRole role) {
+		return (float)this.stars.getOrDefault(role, 0) / this.numberOfReviews.getOrDefault(role, 1);
+	}
 	
 	/**
 	 * Check the authentication of this player

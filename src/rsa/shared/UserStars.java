@@ -1,25 +1,15 @@
 package rsa.shared;
 
-public enum UserStars {
-	/**
-	 * Great ride
-	 */
+public enum UserStars{
+	/*** Great ride*/
 	FIVE_STARS,
-	/**
-	 * Good ride
-	 */
+	/*** Good ride*/
 	FOUR_STARS,
-	/**
-	 * Average ride
-	 */
+	/*** Average ride*/
 	THREE_STARS,
-	/**
-	 * Bad ride
-	 */
+	/*** Bad ride*/
 	TWO_STARS,
-	/**
-	 * Lousy ride
-	 */
+	/*** Lousy ride*/
 	ONE_STAR;
 	int stars;
 
@@ -30,4 +20,6 @@ public enum UserStars {
 	public int getStars() {
 		return stars;
 	}
+	
+	
 }
