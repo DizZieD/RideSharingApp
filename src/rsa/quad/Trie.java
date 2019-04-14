@@ -8,20 +8,21 @@ public abstract class Trie<T extends HasPoint> extends java.lang.Object{
 		SE;
 	}
 	
-	protected double bottomRightX;
-	protected double bottomRightY;
 	protected double topLeftX;
 	protected double topLeftY;
+	protected double bottomRightX;
+	protected double bottomRightY;
+	
 	static int capacity;
 
 	/**
-	 * Create a QuadTree with given (bottomRightX, bottomRightY) and (topLeftX, topLeftY)
-	 * @param bottomRightX - bottom right X coordinate of QuadTree
-	 * @param bottomRightY - bottom right Y coordinate of QuadTree
+	 * Create a QuadTree with given (topLeftX, topLeftY) and (bottomRightX, bottomRightY)
 	 * @param topLeftX - top left X coordinate of QuadTree
 	 * @param topLeftY - top left Y coordinate of QuadTree
+	 * @param bottomRightX - bottom right X coordinate of QuadTree
+	 * @param bottomRightY - bottom right Y coordinate of QuadTree
 	 */
-	protected Trie(double bottomRightX, double bottomRightY, double topLeftX, double topLeftY) {
+	protected Trie(double topLeftX, double topLeftY, double bottomRightX, double bottomRightY)  {
 		super();
 		this.bottomRightX = bottomRightX;
 		this.bottomRightY = bottomRightY;
@@ -107,11 +108,11 @@ public abstract class Trie<T extends HasPoint> extends java.lang.Object{
 	 * @return true if overlaps and false otherwise
 	 */
 	boolean overlaps(double x, double y, double radius) {
-		double areaWidth = Math.abs(bottomRightX - topLeftX); 
-		double areaHeight = Math.abs(topLeftY - bottomRightY);
+		double areaWidth = Math.abs(this.bottomRightX - this.topLeftX); 
+		double areaHeight = Math.abs(this.topLeftY - this.bottomRightY);
 		
-		double nearestX = Math.max(bottomRightX, Math.min(x, bottomRightX + areaWidth));
-		double nearestY = Math.max(bottomRightY, Math.min(y, bottomRightY + areaHeight));
+		double nearestX = Math.max(this.bottomRightX, Math.min(x, this.bottomRightX + areaWidth));
+		double nearestY = Math.max(this.bottomRightY, Math.min(y, this.bottomRightY + areaHeight));
 		
 		return ((x -  nearestX) * (x -  nearestX) + (y - nearestY) * (y - nearestY) ) < (radius * radius);
 	}
