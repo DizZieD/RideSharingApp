@@ -31,7 +31,7 @@ class LeafTrie<T extends HasPoint> extends Trie<T>{
 	void collectNear(double x, double y, double radius, Set<T> points) {
 		double radiusSquared = radius * radius;
 		for (T tmp : this.points){
-        	if((tmp.getX() - x)*(tmp.getX() - x) + (tmp.getY() - y)*(tmp.getY() - y) <= radiusSquared)
+			if((tmp.getX() - x)*(tmp.getX() - x) + (tmp.getY() - y)*(tmp.getY() - y) <= radiusSquared)
         		points.add(tmp);
         }
 	}
@@ -72,7 +72,28 @@ class LeafTrie<T extends HasPoint> extends Trie<T>{
 		return this;
 	}
 	
+	/**
+	 * Turns LeafTrie into NodeTrie when the capacity is reached and insert given point
+	 * @param point - to be inserted
+	 * @return changed parent node
+	 */
 	private Trie<T> split(T point) {
-		return null;
+		Trie<T> node = new NodeTrie<T>(this.topLeftX, this.topLeftY, this.bottomRightX, this.bottomRightY);
+		List<T> oldPoints = new ArrayList<T>(this.points);
+		this.points.clear();
+		node = node.insert(point);
+		for (T tmp : oldPoints){
+			node = node.insert(tmp);
+        }
+		return node;
 	}
+
+	@Override
+	public String toString() {
+		return "LeafTrie [points=" + points + ", topLeftX=" + topLeftX + ", topLeftY=" + topLeftY + ", bottomRightX="
+				+ bottomRightX + ", bottomRightY=" + bottomRightY + ", toString()=" + super.toString() + ", getClass()="
+				+ getClass() + ", hashCode()=" + hashCode() + "]";
+	}
+	
+	
 }

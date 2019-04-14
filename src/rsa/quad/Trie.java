@@ -89,7 +89,7 @@ public abstract class Trie<T extends HasPoint> extends java.lang.Object{
 	/**
 	 * Insert given point
 	 * @param point - to be inserted
-	 * @returnchanged parent node 
+	 * @return changed parent node 
 	 */
 	abstract Trie<T> insert(T point);
    
@@ -108,11 +108,8 @@ public abstract class Trie<T extends HasPoint> extends java.lang.Object{
 	 * @return true if overlaps and false otherwise
 	 */
 	boolean overlaps(double x, double y, double radius) {
-		double areaWidth = Math.abs(this.bottomRightX - this.topLeftX); 
-		double areaHeight = Math.abs(this.topLeftY - this.bottomRightY);
-		
-		double nearestX = Math.max(this.bottomRightX, Math.min(x, this.bottomRightX + areaWidth));
-		double nearestY = Math.max(this.bottomRightY, Math.min(y, this.bottomRightY + areaHeight));
+		double nearestX = Math.max(this.topLeftX, Math.min(x, this.bottomRightX));
+		double nearestY = Math.max(this.bottomRightY, Math.min(y, this.topLeftY));
 		
 		return ((x -  nearestX) * (x -  nearestX) + (y - nearestY) * (y - nearestY) ) < (radius * radius);
 	}

@@ -27,14 +27,14 @@ class NodeTrie<T extends HasPoint> extends Trie<T>{
 
 	@Override
 	void collectAll(Set<T> points) {
-		for (Trie<T> trie : tries.values()) {
+		for (Trie<T> trie : this.tries.values()) {
 			trie.collectAll(points);
 		}
 	}
 
 	@Override
 	void collectNear(double x, double y, double radius, Set<T> points) {
-		for (Trie<T> trie : tries.values()) {
+		for (Trie<T> trie : this.tries.values()) {
 			if(trie.overlaps(x, y, radius))
 				trie.collectNear(x, y, radius, points);
 		}
@@ -42,27 +42,29 @@ class NodeTrie<T extends HasPoint> extends Trie<T>{
 
 	@Override
 	void delete(T point) {
-		tries.get(quadrantOf(point)).delete(point);;
+		this.tries.get(quadrantOf(point)).delete(point);;
 	}
 
 	@Override
 	T find(T point) {
-		return tries.get(quadrantOf(point)).find(point);
+		return this.tries.get(quadrantOf(point)).find(point);
 	}
 
 	@Override
 	Trie<T> insert(T point) {
-		return tries.get(quadrantOf(point)).insert(point);
+		this.tries.put(quadrantOf(point), this.tries.get(quadrantOf(point)).insert(point));
+		return this;
 	}
 
 	@Override
 	Trie<T> insertReplace(T point) {
-		return tries.get(quadrantOf(point)).insert(point);
+		this.tries.put(quadrantOf(point), this.tries.get(quadrantOf(point)).insert(point));
+		return this;
 	}
 	
 	Trie.Quadrant quadrantOf(T point){
-		double halfX = (topLeftX+bottomRightX)/2;
-		double halfY = (topLeftY+bottomRightY)/2;
+		double halfX = (this.topLeftX+this.bottomRightX)/2;
+		double halfY = (this.topLeftY+this.bottomRightY)/2;
 		
 		if(halfX >= point.getX())
 		{
@@ -74,4 +76,13 @@ class NodeTrie<T extends HasPoint> extends Trie<T>{
 			return Trie.Quadrant.NW;
 		return Trie.Quadrant.SW;
 	}
+
+	@Override
+	public String toString() {
+		return "NodeTrie [tries=" + tries + ", topLeftX=" + topLeftX + ", topLeftY=" + topLeftY + ", bottomRightX="
+				+ bottomRightX + ", bottomRightY=" + bottomRightY + ", toString()=" + super.toString() + ", getClass()="
+				+ getClass() + ", hashCode()=" + hashCode() + "]";
+	}
+	
+	
 }
