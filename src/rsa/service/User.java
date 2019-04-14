@@ -3,6 +3,7 @@ package rsa.service;
 import java.util.HashMap;
 import java.util.Map;
 import rsa.shared.Car;
+import rsa.shared.PreferredMatch;
 import rsa.shared.RideRole;
 import rsa.shared.UserStars;
 
@@ -12,11 +13,11 @@ public class User extends java.lang.Object implements java.io.Serializable{
 	String nick;
 	String name;
 	String password;
+	PreferredMatch preferredMatch;
 	
 	Map<String,Car> cars;
 	Map<RideRole, Integer> stars;
 	private Map<RideRole, Integer> numberOfReviews;
-	//Map<K,V> rides;
 
 	/**
 	 * Create a user with given features
@@ -29,6 +30,7 @@ public class User extends java.lang.Object implements java.io.Serializable{
 		this.nick = nick;
 		this.name = name;
 		this.password = password;
+		this.preferredMatch = PreferredMatch.BETTER;
 		this.cars = new HashMap<String, Car>();
 		this.stars = new HashMap<RideRole, Integer>();
 		this.numberOfReviews = new HashMap<RideRole, Integer>();
@@ -147,9 +149,24 @@ public class User extends java.lang.Object implements java.io.Serializable{
 		return nick;
 	}
 	
-	//void setPreferredMatch(PreferredMatch preferredMatch)
+	/**
+	 * Change preference for sorting matches
+	 * @param preferredMatch - to set for this user
+	 */
+	void setPreferredMatch(PreferredMatch preferredMatch) {
+		if(preferredMatch != null)
+			this.preferredMatch = preferredMatch;
+		else
+			this.preferredMatch = PreferredMatch.BETTER;
+	}
 	
-	//PreferredMatch getPreferredMatch()
+	/**
+	 * Current preference for sorting matches. Defaults to BETTER
+	 * @return preferred match by this user
+	 */
+	PreferredMatch getPreferredMatch() {
+		return this.preferredMatch;
+	}
 	
 	
 	
