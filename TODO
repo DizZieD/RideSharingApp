@@ -5,8 +5,12 @@ rsa.shared
 
 rsa.quad
    -LeafTrie
-       -insert: isnt complete, it doesnt split if capacity is reached
-   -NodeTrie
-   -PointQuadTree
+       #BUG infinite splitting when capacity is reached, dont know about details, fix later
+
+rsa.service
+   -RideMatchInfoSorter
    
-   -PointOutOfBoundException
+   -Manager
+   -Matcher
+   -Ride
+   -Users
