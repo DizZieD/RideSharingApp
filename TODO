@@ -4,13 +4,11 @@ rsa.shared
    -RideSharingAppException
 
 rsa.quad
-   -LeafTrie
-       #BUG infinite splitting when capacity is reached, dont know about details, fix later
+   #Waiting for teacher responce about a failed JUnit test
 
 rsa.service
    -RideMatchInfoSorter
    
    -Manager
    -Matcher
-   -Ride
    -Users
