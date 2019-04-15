@@ -43,9 +43,10 @@ class LeafTrie<T extends HasPoint> extends Trie<T>{
 
 	@Override
 	T find(T point) {
-		int indexOfPoint = this.points.indexOf(point);
-		if(indexOfPoint != -1)
-			return this.points.get(indexOfPoint);
+		for (T tmp : this.points){
+        	if(tmp.getX() == point.getX() && tmp.getY() == point.getY())
+        		return tmp;
+        }
 		return null;
 	}
 	
