@@ -69,12 +69,12 @@ class NodeTrie<T extends HasPoint> extends Trie<T>{
 		if(halfX >= point.getX())
 		{
 			if(halfY >= point.getY())
-				return Trie.Quadrant.NE;
-			return Trie.Quadrant.SE;
+				return Trie.Quadrant.SW;
+			return Trie.Quadrant.NW;
 		}
 		if(halfY >= point.getY())
-			return Trie.Quadrant.NW;
-		return Trie.Quadrant.SW;
+			return Trie.Quadrant.SE;
+		return Trie.Quadrant.NE;
 	}
 
 	@Override
