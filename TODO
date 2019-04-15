@@ -4,11 +4,10 @@ rsa.shared
    -RideSharingAppException
 
 rsa.quad
-   #Waiting for teacher responce about a failed JUnit test
+   #DONE
 
-rsa.service
-   -RideMatchInfoSorter
-   
+rsa.service  
    -Manager
    -Matcher
+       #DOING
    -Users
