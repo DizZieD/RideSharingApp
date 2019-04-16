@@ -1,7 +1,6 @@
 rsa.shared
-   -RideMatchInfo
-
    -RideSharingAppException
+       #maybe i should display the message
 
 rsa.quad
    #DONE

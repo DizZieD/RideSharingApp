@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import rsa.quad.HasPoint;
 import rsa.shared.Location;
+import rsa.shared.PreferredMatch;
 import rsa.shared.RideMatchInfo;
 import rsa.shared.RideRole;
 
@@ -26,7 +27,7 @@ public class Ride implements HasPoint, RideMatchInfoSorter {
 	 * @param plate - of the car
 	 * @param cost - of the ride
 	 */
-	Ride(User user, Location from, Location to, String plate, float cost) {
+	public Ride(User user, Location from, Location to, String plate, float cost) {
 		super();
 		this.user = user;
 		this.from = from;
@@ -200,8 +201,41 @@ public class Ride implements HasPoint, RideMatchInfoSorter {
 	
 	@Override
 	public Comparator<RideMatchInfo> getComparator() {
-		// TODO Auto-generated method stub
-		return null;
+		if(this.user.preferredMatch == PreferredMatch.CLOSER)
+		{
+			return new Comparator<RideMatchInfo>() {
+				@Override
+		        public int compare(RideMatchInfo a, RideMatchInfo b) {
+		            double distanceA = a.getWhere(RideRole.DRIVER).getX() * a.getWhere(RideRole.PASSENGER).getX() + a.getWhere(RideRole.DRIVER).getY() * a.getWhere(RideRole.PASSENGER).getY();
+		            double distanceB = b.getWhere(RideRole.DRIVER).getX() * b.getWhere(RideRole.PASSENGER).getX() + b.getWhere(RideRole.DRIVER).getY() * b.getWhere(RideRole.PASSENGER).getY();
+		            
+		            if(distanceA >= distanceB)
+		            	return 1;
+		            return -1;	       
+				}
+			};
+		}
+		
+		if(this.user.preferredMatch == PreferredMatch.CHEAPER)
+		{
+			return new Comparator<RideMatchInfo>() {
+				@Override
+		        public int compare(RideMatchInfo a, RideMatchInfo b) {
+		            if(a.getCost() >= b.getCost())
+		            	return 1;
+		            return -1;
+		        }
+			};
+		}
+		
+		return new Comparator<RideMatchInfo>() {
+			@Override
+	        public int compare(RideMatchInfo a, RideMatchInfo b) {
+				if(a.getStars(getRideRole().other()) >= b.getStars(getRideRole().other()))
+					return -1;
+				return 1;
+	        }
+		};
 	}
 
 	@Override
