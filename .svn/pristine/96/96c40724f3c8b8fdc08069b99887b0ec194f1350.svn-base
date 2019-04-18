@@ -18,8 +18,6 @@ import rsa.shared.UserStars;
 public class Matcher implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private static final int CAPACITY = 10;
-	
 	private static Location bottomRight;
 	private static Location topLeft;
 	private static double radius;
@@ -84,7 +82,7 @@ public class Matcher implements Serializable {
 	 * Create a empty matcher
 	 */
 	public Matcher() {
-		Trie.setCapacity(CAPACITY);
+		Trie.setCapacity(10);
 		this.rides = new HashMap<Long, Ride>();
 		this.matches = new HashMap<Long, RideMatch>();
 		this.qtree = new PointQuadtree<Ride>(topLeft.getX(), topLeft.getY(), bottomRight.getX(), bottomRight.getY());

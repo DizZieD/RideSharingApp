@@ -1,6 +1,6 @@
 package rsa.service;
 
-import java.util.SortedSet;
+import java.util.Set;
 
 import rsa.shared.Location;
 import rsa.shared.PreferredMatch;
@@ -12,15 +12,8 @@ import rsa.shared.UserStars;
 public class Manager {
 	private static Manager manager = null;
 	
-	private static final double TOP_LEFT_X = 0.0;
-	private static final double TOP_LEFT_Y = 1000.0;
-	private static final double BOTTOM_RIGHT_X = 1000.0;
-	private static final double BOTTOM_RIGHT_Y = 0.0;
-	private static final int RADIUS = 10;
-	
-	
-	static Users allUsers;
-	static Matcher matcher;
+	Users allUsers;
+	Matcher matcher;
 	
 	/**
 	 * Create a empty Manager
@@ -28,12 +21,6 @@ public class Manager {
 	 */
 	private Manager() throws RideSharingAppException {
 		allUsers = Users.getInstance();
-		
-		Matcher.setTopLeft(new Location(TOP_LEFT_X,TOP_LEFT_Y));
-		Matcher.setBottomRight(new Location(BOTTOM_RIGHT_X,BOTTOM_RIGHT_Y));
-		
-		Matcher.setRadius(RADIUS);
-		
 		matcher = new Matcher();
 	}
 	
@@ -100,7 +87,9 @@ public class Manager {
 	 * @throws RideSharingAppException - if authentication fails
 	 */
 	public PreferredMatch getPreferredMatch(String nick, String password) throws RideSharingAppException {
-		allUsers.authenticate(nick, password);
+		if(!allUsers.authenticate(nick, password)) {
+			throw new RideSharingAppException();
+		}
 		
 		return allUsers.getUser(nick).getPreferredMatch();
 	}
@@ -113,8 +102,10 @@ public class Manager {
 	 * @throws RideSharingAppException - if authentication fails
 	 */
 	public void setPreferredMatch(String nick, String password, PreferredMatch preferred) throws RideSharingAppException {
-		authenticate(nick, password);
-
+		if(!allUsers.authenticate(nick, password)) {
+			throw new RideSharingAppException();
+		}
+		
 		allUsers.getUser(nick).setPreferredMatch(preferred);
 	}
 	
@@ -130,7 +121,9 @@ public class Manager {
 	 * @throws RideSharingAppException - if authentication fails
 	 */
 	public long addRide(String nick, String password, Location from, Location to, String plate, float cost) throws RideSharingAppException {
-		authenticate(nick, password);
+		if(!allUsers.authenticate(nick, password)) {
+			throw new RideSharingAppException();
+		}
 		
 		return matcher.addRide(allUsers.getUser(nick), from, to, plate, cost);
 	}
@@ -141,7 +134,7 @@ public class Manager {
 	 * @param current - location of user
 	 * @return A Set of RideMatchInfo
 	 */
-	public SortedSet<RideMatchInfo> updateRide(long rideId, Location current) {
+	public Set<RideMatchInfo> updateRide(long rideId, Location current) {
 		return matcher.updateRide(rideId, current);
 	}
 	

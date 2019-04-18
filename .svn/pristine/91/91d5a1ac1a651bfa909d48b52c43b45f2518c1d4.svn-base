@@ -1,0 +1,9 @@
+rsa.shared
+   -RideSharingAppException
+       #maybe i should display the message
+
+rsa.quad
+   #DONE
+
+rsa.service  
+   -Manager
