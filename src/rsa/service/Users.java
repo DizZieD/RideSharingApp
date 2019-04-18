@@ -17,15 +17,51 @@ import rsa.shared.RideSharingAppException;
 public class Users implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private static File managerFile = null;
+	private static File managerFile = new File("./users.ser");
 	
 	private static Users allUsers = null;
 	
 	private static Map<String, User> users;
 	
+	/**
+	 * Create a empty of Users
+	 */
 	private Users() {
 		Users.users = new HashMap<String, User>();
-		Users.managerFile = new File("./users.ser");
+	}
+	
+	/**
+	 * Restores a saved in serialized file
+	 * @throws RideSharingAppException - if I/O error occurs reading serialization
+	 */
+	private static void restore() throws RideSharingAppException {
+		try {
+			InputStream inStream;
+			inStream = new FileInputStream(managerFile);
+	        ObjectInputStream fileObjectIn = new ObjectInputStream(inStream);
+	        allUsers = (Users) fileObjectIn.readObject();
+	        fileObjectIn.close();
+	        inStream.close();
+		} catch (IOException | ClassNotFoundException e) {
+			throw new RideSharingAppException(e);
+		}
+	}
+	
+	/**
+	 * Saves Users to a serializable file
+	 * @throws RideSharingAppException - if I/O error occurs reading serialization
+	 */
+	private static void backup() throws RideSharingAppException {
+		try {
+			OutputStream outStream = new FileOutputStream(managerFile);
+	        ObjectOutputStream fileObjectOut = new ObjectOutputStream(outStream);
+	        fileObjectOut.writeObject(allUsers);
+	        fileObjectOut.close();
+	        outStream.close();
+		}
+		catch(IOException e) { 
+			throw new RideSharingAppException(e);
+		}
 	}
 	
 	/**
@@ -35,26 +71,10 @@ public class Users implements Serializable {
 	 */
 	public static Users getInstance() throws RideSharingAppException {
 		if(allUsers == null) {
-			try {
-				if(managerFile == null || managerFile.length() == 0)
-				{
-					allUsers = new Users();
-					return allUsers;
-				}
-				
-				InputStream inStream = new FileInputStream(managerFile);
-		        ObjectInputStream fileObjectIn = new ObjectInputStream(inStream);
-		        Users allUsers = (Users) fileObjectIn.readObject();
-		        fileObjectIn.close();
-		        inStream.close();
-		        return allUsers;
-			} 
-			catch(IOException e) { 
-				throw new RideSharingAppException(e);
-			} 
-			catch (ClassNotFoundException e) {
-				throw new RideSharingAppException(e);
-			}	
+			if(managerFile == null || managerFile.length() == 0)
+				allUsers = new Users();
+			else
+				restore();
 		}
 		return allUsers;
 	}
@@ -64,6 +84,7 @@ public class Users implements Serializable {
 	 */
 	void reset() {
 		allUsers = new Users();
+		managerFile.delete();
 	}
 	
 	/**
@@ -97,17 +118,9 @@ public class Users implements Serializable {
 		User user = new User(nick, name, password);
 		Users.users.put(nick, user);
 		
-		try {
-			OutputStream outStream = new FileOutputStream(managerFile);
-	        ObjectOutputStream fileObjectOut = new ObjectOutputStream(outStream);
-	        fileObjectOut.writeObject(allUsers);
-	        fileObjectOut.close();
-	        outStream.close();
-	        return true;
-		}
-		catch(IOException e) { 
-			throw new RideSharingAppException(e);
-		}
+		backup();
+		
+        return true;
 	}
 	
 	/**
@@ -122,17 +135,9 @@ public class Users implements Serializable {
 		if(authenticate(nick, oldPassword)) {
 			getUser(nick).setPassword(newPassword);
 			
-			try {
-				OutputStream outStream = new FileOutputStream(managerFile);
-		        ObjectOutputStream fileObjectOut = new ObjectOutputStream(outStream);
-		        fileObjectOut.writeObject(allUsers);
-		        fileObjectOut.close();
-		        outStream.close();
-		        return true;
-			}
-			catch(IOException e) { 
-				throw new RideSharingAppException(e);
-			}
+			backup();
+			
+			return true;
 		}
 		return false;
 	}
