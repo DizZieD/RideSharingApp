@@ -233,8 +233,8 @@ public class ManagerTest extends rsa.TestData {
 		manager.register(NICKS[2], NAMES[2], PASSWORDS[2]);
 		Manager.allUsers.getUser(NICKS[2]).addCar(new Car(PLATES[2],MAKES[2], MODELS[2], COLORS[2]));
 		
-		long driverRideId   = manager.addRide(NICKS[0], NAMES[0],  from, to, PLATES[0],COSTS[0]);
-		long passgrRideId = manager.addRide(NICKS[1], NAMES[1], from, to, null,COSTS[0]);
+		long driverRideId   = manager.addRide(NICKS[0], PASSWORDS[0],  from, to, PLATES[0],COSTS[0]);
+		long passgrRideId = manager.addRide(NICKS[1], PASSWORDS[1], from, to, null,COSTS[0]);
 		long otherRideId  = manager.addRide(NICKS[2], PASSWORDS[2], from, to, PLATES[2], COSTS[0]);
 		
 		Manager.allUsers.getUser(NICKS[0]).addStars(UserStars.FIVE_STARS, RideRole.DRIVER);
@@ -272,8 +272,8 @@ public class ManagerTest extends rsa.TestData {
 		Manager.allUsers.getUser(NICKS[2]).addCar(new Car(PLATES[1],MAKES[1], MODELS[1], COLORS[1]));
 		Manager.allUsers.getUser(NICKS[2]).addCar(new Car(PLATES[2],MAKES[2], MODELS[2], COLORS[2]));
 		
-		long driverRideId   = manager.addRide(NICKS[0], NAMES[0],  from, to, PLATES[0],COSTS[0]);
-		long passgrRideId = manager.addRide(NICKS[1], NAMES[1], from, to, null,COSTS[0]);
+		long driverRideId   = manager.addRide(NICKS[0], PASSWORDS[0],  from, to, PLATES[0],COSTS[0]);
+		long passgrRideId = manager.addRide(NICKS[1], PASSWORDS[1], from, to, null,COSTS[0]);
 		long otherRideId  = manager.addRide(NICKS[2], PASSWORDS[2], from, to, PLATES[2], COSTS[0]);
 		
 		Manager.allUsers.getUser(NICKS[0]).addStars(UserStars.FOUR_STARS, RideRole.DRIVER);
@@ -307,8 +307,8 @@ public class ManagerTest extends rsa.TestData {
 		manager.register(NICKS[2], NAMES[2], PASSWORDS[2]);
 		Manager.allUsers.getUser(NICKS[2]).addCar(new Car(PLATES[2],MAKES[2], MODELS[2], COLORS[2]));
 		
-		long driverRideId   = manager.addRide(NICKS[0], NAMES[0],  from, to, PLATES[0],COSTS[0]);
-		long passgrRideId = manager.addRide(NICKS[1], NAMES[1], from, to, null,COSTS[0]);
+		long driverRideId   = manager.addRide(NICKS[0], PASSWORDS[0],  from, to, PLATES[0],COSTS[0]);
+		long passgrRideId = manager.addRide(NICKS[1], PASSWORDS[1], from, to, null,COSTS[0]);
 		long otherRideId  = manager.addRide(NICKS[2], PASSWORDS[2], from, to, PLATES[2], COSTS[0]);
 		
 		manager.setPreferredMatch(NICKS[1], PASSWORDS[1], PreferredMatch.BETTER);
@@ -348,8 +348,8 @@ public class ManagerTest extends rsa.TestData {
 		Manager.allUsers.getUser(NICKS[2]).addCar(new Car(PLATES[1],MAKES[1], MODELS[1], COLORS[1]));
 		Manager.allUsers.getUser(NICKS[2]).addCar(new Car(PLATES[2],MAKES[2], MODELS[2], COLORS[2]));
 		
-		long driverRideId   = manager.addRide(NICKS[0], NAMES[0],  from, to, PLATES[0],COSTS[0]);
-		long passgrRideId = manager.addRide(NICKS[1], NAMES[1], from, to, null,COSTS[0]);
+		long driverRideId   = manager.addRide(NICKS[0], PASSWORDS[0],  from, to, PLATES[0],COSTS[0]);
+		long passgrRideId = manager.addRide(NICKS[1], PASSWORDS[1], from, to, null,COSTS[0]);
 		long otherRideId  = manager.addRide(NICKS[2], PASSWORDS[2], from, to, PLATES[2], COSTS[0]);
 		
 		manager.setPreferredMatch(NICKS[1], PASSWORDS[1], PreferredMatch.BETTER);
@@ -386,8 +386,8 @@ public class ManagerTest extends rsa.TestData {
 		manager.register(NICKS[2], NAMES[2], PASSWORDS[2]);
 		Manager.allUsers.getUser(NICKS[2]).addCar(new Car(PLATES[2],MAKES[2], MODELS[2], COLORS[2]));
 		
-		long driverRideId   = manager.addRide(NICKS[0], NAMES[0],  from, to, PLATES[0],COSTS[1]);
-		long passgrRideId = manager.addRide(NICKS[1], NAMES[1], from, to, null,COSTS[0]);
+		long driverRideId   = manager.addRide(NICKS[0], PASSWORDS[0],  from, to, PLATES[0],COSTS[1]);
+		long passgrRideId = manager.addRide(NICKS[1], PASSWORDS[1], from, to, null,COSTS[0]);
 		long otherRideId  = manager.addRide(NICKS[2], PASSWORDS[2], from, to, PLATES[2], COSTS[2]);
 		
 		manager.setPreferredMatch(NICKS[1], PASSWORDS[1], PreferredMatch.CHEAPER);
@@ -427,8 +427,8 @@ public class ManagerTest extends rsa.TestData {
 		Manager.allUsers.getUser(NICKS[2]).addCar(new Car(PLATES[1],MAKES[1], MODELS[1], COLORS[1]));
 		Manager.allUsers.getUser(NICKS[2]).addCar(new Car(PLATES[2],MAKES[2], MODELS[2], COLORS[2]));
 		
-		long driverRideId   = manager.addRide(NICKS[0], NAMES[0],  from, to, PLATES[0],COSTS[2]);
-		long passgrRideId = manager.addRide(NICKS[1], NAMES[1], from, to, null,COSTS[0]);
+		long driverRideId   = manager.addRide(NICKS[0], PASSWORDS[0],  from, to, PLATES[0],COSTS[2]);
+		long passgrRideId = manager.addRide(NICKS[1], PASSWORDS[1], from, to, null,COSTS[0]);
 		long otherRideId  = manager.addRide(NICKS[2], PASSWORDS[2], from, to, PLATES[2], COSTS[1]);
 		
 		manager.setPreferredMatch(NICKS[1], PASSWORDS[1], PreferredMatch.CHEAPER);
@@ -466,8 +466,8 @@ public class ManagerTest extends rsa.TestData {
 		
 		Location near = new Location(X1+RADIUS,Y1);
 		
-		long driverRideId   = manager.addRide(NICKS[0], NAMES[0],  from, to, PLATES[0],COSTS[1]);
-		long passgrRideId = manager.addRide(NICKS[1], NAMES[1], from, to, null,COSTS[0]);
+		long driverRideId   = manager.addRide(NICKS[0], PASSWORDS[0],  from, to, PLATES[0],COSTS[1]);
+		long passgrRideId = manager.addRide(NICKS[1], PASSWORDS[1], from, to, null,COSTS[0]);
 		long otherRideId  = manager.addRide(NICKS[2], PASSWORDS[2], from, to, PLATES[2], COSTS[2]);
 		
 		manager.setPreferredMatch(NICKS[1], PASSWORDS[1], PreferredMatch.CLOSER);
@@ -510,8 +510,8 @@ public class ManagerTest extends rsa.TestData {
 		
 		Location near = new Location(X1+RADIUS,Y1);
 		
-		long driverRideId   = manager.addRide(NICKS[0], NAMES[0],  from, to, PLATES[0],COSTS[1]);
-		long passgrRideId = manager.addRide(NICKS[1], NAMES[1], from, to, null,COSTS[0]);
+		long driverRideId   = manager.addRide(NICKS[0], PASSWORDS[0],  from, to, PLATES[0],COSTS[1]);
+		long passgrRideId = manager.addRide(NICKS[1], PASSWORDS[1], from, to, null,COSTS[0]);
 		long otherRideId  = manager.addRide(NICKS[2], PASSWORDS[2], from, to, PLATES[2], COSTS[2]);
 		
 		manager.setPreferredMatch(NICKS[1], PASSWORDS[1], PreferredMatch.CLOSER);

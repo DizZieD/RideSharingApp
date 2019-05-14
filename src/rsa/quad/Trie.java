@@ -8,12 +8,12 @@ public abstract class Trie<T extends HasPoint> extends java.lang.Object{
 		SE;
 	}
 	
-	protected double topLeftX;
-	protected double topLeftY;
-	protected double bottomRightX;
-	protected double bottomRightY;
+	protected double topLeftX = 0;
+	protected double topLeftY = 1000;
+	protected double bottomRightX = 1000;
+	protected double bottomRightY = 0;
 	
-	static int capacity;
+	static int capacity = 10;
 
 	/**
 	 * Create a QuadTree with given (topLeftX, topLeftY) and (bottomRightX, bottomRightY)

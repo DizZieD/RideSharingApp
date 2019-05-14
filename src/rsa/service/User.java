@@ -51,25 +51,7 @@ public class User extends java.lang.Object implements java.io.Serializable{
 	 * @param role - in which stars are added 
 	 */
 	public void addStars(UserStars moreStars, RideRole role) {
-		int stars = 0;
-		
-		switch(moreStars) {
-			case ONE_STAR:
-				stars = 1;
-				break;
-			case TWO_STARS:
-				stars = 2;
-				break;
-			case THREE_STARS:
-				stars = 3;
-				break;
-			case FOUR_STARS:
-				stars = 4;
-				break;
-			case FIVE_STARS:
-				stars = 5;
-				break;	
-		}
+		int stars = moreStars.getStars();
 		
 		this.numberOfReviews.put(role, this.numberOfReviews.getOrDefault(role, 0)+1);
 		this.stars.put(role, this.stars.getOrDefault(role, 0)+stars);

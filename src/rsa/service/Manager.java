@@ -100,9 +100,11 @@ public class Manager {
 	 * @throws RideSharingAppException - if authentication fails
 	 */
 	public PreferredMatch getPreferredMatch(String nick, String password) throws RideSharingAppException {
-		allUsers.authenticate(nick, password);
+		if (allUsers.authenticate(nick, password)) {
+			return allUsers.getUser(nick).getPreferredMatch();
+		}
 		
-		return allUsers.getUser(nick).getPreferredMatch();
+		throw new RideSharingAppException();
 	}
 	
 	/**
@@ -113,9 +115,12 @@ public class Manager {
 	 * @throws RideSharingAppException - if authentication fails
 	 */
 	public void setPreferredMatch(String nick, String password, PreferredMatch preferred) throws RideSharingAppException {
-		authenticate(nick, password);
+		if (authenticate(nick, password)) {
+			allUsers.getUser(nick).setPreferredMatch(preferred);
+			return;
+		}
 
-		allUsers.getUser(nick).setPreferredMatch(preferred);
+		throw new RideSharingAppException();
 	}
 	
 	/**
@@ -129,10 +134,12 @@ public class Manager {
 	 * @return id of created ride
 	 * @throws RideSharingAppException - if authentication fails
 	 */
-	public long addRide(String nick, String password, Location from, Location to, String plate, float cost) throws RideSharingAppException {
-		authenticate(nick, password);
+	public long addRide(String nick, String password, Location from, Location to, String plate, float cost) throws RideSharingAppException {		
+		if (authenticate(nick, password)) {
+			return matcher.addRide(allUsers.getUser(nick), from, to, plate, cost);
+		}
 		
-		return matcher.addRide(allUsers.getUser(nick), from, to, plate, cost);
+		throw new RideSharingAppException();
 	}
 	
 	/**

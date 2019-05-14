@@ -18,6 +18,23 @@ public enum UserStars{
 	 * @return the number of stars
 	 */
 	public int getStars() {
+		switch(this) {
+			case ONE_STAR:
+				stars = 1;
+				break;
+			case TWO_STARS:
+				stars = 2;
+				break;
+			case THREE_STARS:
+				stars = 3;
+				break;
+			case FOUR_STARS:
+				stars = 4;
+				break;
+			case FIVE_STARS:
+				stars = 5;
+				break;	
+		}
 		return stars;
 	}
 	

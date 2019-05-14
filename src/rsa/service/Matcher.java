@@ -22,7 +22,7 @@ public class Matcher implements Serializable {
 	
 	private static Location bottomRight;
 	private static Location topLeft;
-	private static double radius;
+	private static double radius = 10;
 	
 	Map<Long, Ride> rides;
 	Map<Long, RideMatch> matches;
